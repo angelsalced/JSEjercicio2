@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Tabla</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Crear Tabla</h1>
+    <form id="FormTabla">
+        <label for="filas">Inserte el numero de filas:</label>
+        <input type="number" id="filas" required min="1">
+        <br>
+        <br>
+        <label for="columnas">Inserte el numero de columnas:</label>
+        <input type="number" id="columnas" required min="1">
+        <br>
+        <br>
+        <button type="submit">Crear</button>
+    </form>
+    <div id="tablafinal"></div>
+    <div id="infoTabla"></div>
+
+    <script>
+        document.getElementById("FormTabla").addEventListener("submit", function(event) {
+            event.preventDefault(); 
+     
+            const filas = parseInt(document.getElementById("filas").value);
+            const columnas = parseInt(document.getElementById("columnas").value);
+
+            let tabla = "<table>";
+            for (let nfilas = 0; nfilas < filas; nfilas++) {
+                tabla += "<tr>";
+                for (let ncolumnas = 0; ncolumnas < columnas; ncolumnas++) {
+                    tabla += `<td></td>`;
+                }
+                tabla += "</tr>";
+            }
+            tabla += "</table>";
+
+            document.getElementById("tablafinal").innerHTML = tabla;
+
+            document.getElementById("infoTabla").innerText = `\nLa tabla tiene ${filas} filas y ${columnas} columnas.`;
+        });
+    </script>
+</body>
+</html>
